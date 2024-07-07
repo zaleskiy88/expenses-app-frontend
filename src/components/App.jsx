@@ -1,12 +1,9 @@
-import { useState } from "react";
-
+import { AppStyled } from "./App.styled";
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <>
+    <AppStyled>
       <h1>Expenses Tracker App</h1>
-    </>
+    </AppStyled>
   );
 }
 
