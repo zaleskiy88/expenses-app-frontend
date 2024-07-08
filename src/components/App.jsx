@@ -1,8 +1,11 @@
-import { AppStyled } from "./App.styled";
+import { AppStyled, MainLayout, InnerLayout } from "../styles/index";
+
 function App() {
   return (
     <AppStyled>
-      <h1>Expenses Tracker App</h1>
+      <MainLayout>
+        <h1>Main Layout</h1>
+      </MainLayout>
     </AppStyled>
   );
 }
