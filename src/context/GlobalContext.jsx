@@ -14,11 +14,10 @@ export const GlobalProvider = ({ children }) => {
   const getIncomes = async () => {
     try {
       const res = await axios.get(`${BASE_URL}/get-incomes`);
-      console.log(res);
       setIncomes(res.data);
-    } catch (error) {
-      //setError(error.response.data.message);
-      console.log(error);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
     }
   };
 
@@ -27,7 +26,7 @@ export const GlobalProvider = ({ children }) => {
       const response = await axios.post(`${BASE_URL}/add-income`, income);
       setIncomes([...incomes, response.data]);
     } catch (err) {
-      setError(err.response.data.message);
+      setError(err.message);
       console.log(err);
     }
   };
