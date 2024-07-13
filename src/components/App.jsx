@@ -1,7 +1,8 @@
 import { useState } from "react";
+
 import { AppStyled, MainLayout } from "../styles/index";
 import { Navigation } from "./Navigation/Navigation";
-import { Dashboard, Expenses, Incomes, Transactions } from "./index";
+import { Dashboard, Expenses, Income, Transactions } from "./index";
 
 function App() {
   const [active, setActive] = useState(1);
@@ -10,7 +11,7 @@ function App() {
     const components = {
       1: <Dashboard />,
       2: <Transactions />,
-      3: <Incomes />,
+      3: <Income />,
       4: <Expenses />,
     };
 
