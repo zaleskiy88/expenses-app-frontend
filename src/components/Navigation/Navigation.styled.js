@@ -34,7 +34,7 @@ export const UserAvatar = styled.img`
   background: #fcf6f9;
   border: 2px solid #ffffffff;
   padding: 0.2rem;
-  box-shadow: 0px 1px 17px rgba(0, 0, 0, 0.06);
+  box-shadow: var(--shadow);
 `;
 
 export const NavMenu = styled.ul`

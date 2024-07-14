@@ -20,6 +20,8 @@ export const GlobalStyle = createGlobalStyle`
         --color-accent: #F56692;
         --color-delete: #FF0000;
 
+       --shadow: 0px 1px 17px rgba(0, 0, 0, 0.06);
+
         --transition: all 0.2s ease-in-out;
     }
 
