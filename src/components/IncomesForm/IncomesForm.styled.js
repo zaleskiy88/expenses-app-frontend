@@ -46,8 +46,7 @@ export const SubmitBtnWrapper = styled.div`
     box-shadow: var(--shadow);
 
     &:hover {
-      background: var(--color-green);
-      transition: var(--transition);
+      background: var(--color-green) !important;
     }
   }
 `;

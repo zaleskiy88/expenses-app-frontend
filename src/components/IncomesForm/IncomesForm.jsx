@@ -2,8 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { IncomesFormSyled, InputStyled, Selects, SubmitBtnWrappersrc/components/Incomes/Incomes.jsx } from "./IncomesForm.styled";
+import { IncomesFormSyled, InputStyled, Selects, SubmitBtnWrapper } from "./IncomesForm.styled";
 import { useGlobalContext } from "../../context/useGlobalContext";
+import { Button } from "../Button/Button";
+import { IoAdd } from "react-icons/io5";
 
 const BASE_URL = "http://localhost:5000/api/v1/";
 
@@ -38,6 +40,14 @@ export const IncomesForm = () => {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     addIncome(formState);
+    setFormState({
+      title: "",
+      amount: "",
+      type: "",
+      date: new Date(),
+      category: "",
+      description: "",
+    });
   };
 
   useEffect(() => {
@@ -124,8 +134,18 @@ export const IncomesForm = () => {
       </div>
 
       <SubmitBtnWrapper className="submit-btn-container">
-        <button type="submit">Add Income</button>
+        <Button
+          type="submit"
+          name={"Add Income"}
+          icon={<IoAdd size={"1.6rem"} />}
+          bPad={"0.8rem 1.6rem"}
+          bRad={"30px"}
+          bg={"var(--color-accent)"}
+          color={"#FFF"}
+        />
       </SubmitBtnWrapper>
     </IncomesFormSyled>
   );
 };
+
+//name, icon, onClick, bg, bPad, color, bRad
