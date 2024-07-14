@@ -23,16 +23,19 @@ export const GlobalProvider = ({ children }) => {
 
   const addIncome = async (income) => {
     try {
-      const response = await axios.post(`${BASE_URL}/add-income`, income);
-      console.log(response);
-      setIncomes([...incomes, response.data]);
+      const res = await axios.post(`${BASE_URL}/add-income`, income);
+      setIncomes([...incomes, res.data]);
     } catch (err) {
       setError(err.message);
       console.log(err);
     }
   };
 
-  return <GlobalContext.Provider value={{ incomes, addIncome, getIncomes }}>{children}</GlobalContext.Provider>;
+  return (
+    <GlobalContext.Provider value={{ incomes, addIncome, getIncomes }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 };
 
 // PROPTYPES
