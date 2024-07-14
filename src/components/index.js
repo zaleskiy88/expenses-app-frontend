@@ -4,3 +4,5 @@ export * from "./Incomes/Incomes.jsx";
 export * from "./Transactions/Transactions.jsx";
 export * from "./Navigation/Navigation.jsx";
 export * from "./IncomesForm/IncomesForm.jsx";
+export * from "./Button/Button.jsx";
+export * from "./IncomeItem/IncomeItem.jsx";
