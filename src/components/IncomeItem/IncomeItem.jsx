@@ -66,6 +66,6 @@ IncomeItem.propTypes = {
   date: PropTypes.string.isRequired,
   category: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  indicatorcolor: PropTypes.string.isRequired,
+  $indicatorColor: PropTypes.string.isRequired,
   deleteItem: PropTypes.func.isRequired,
 };
