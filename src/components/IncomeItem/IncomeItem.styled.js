@@ -17,6 +17,9 @@ export const IncomeItemStyled = styled.li`
 export const IconWrapper = styled.div`
   width: 80px;
   height: 80px;
+  background-color: rgb(249 242 247);
+  border: 2px solid #ffffff;
+  border-radius: 10px;
 `;
 
 export const ContentWrapper = styled.div`
@@ -29,20 +32,37 @@ export const ContentWrapper = styled.div`
     font-size: 1.3rem;
     padding-left: 2rem;
     position: relative;
-  }
 
-  &::before {
-    content: "";
-    position: absolute;
-    transform: translateY(-50%);
-    width: 0.8rem;
-    height: 0.8rem;
-    background-color: yellow;
+    &::before {
+      content: "";
+      position: absolute;
+      transform: translateY(-50%);
+      top: 50%;
+      left: 0;
+      width: 0.8rem;
+      height: 0.8rem;
+      background-color: ${(props) => props.$indicatorColor};
+      border-radius: 50px;
+    }
   }
 `;
 
-export const InnerContentWrapper = styled.div``;
+export const InnerContentWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
 
-export const TextWrapper = styled.div``;
+export const TextWrapper = styled.div`
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+
+  p {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+`;
 
 export const BtnWrapper = styled.div``;

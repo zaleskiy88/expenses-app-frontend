@@ -26,44 +26,35 @@ export const Income = () => {
             <IncomesForm addIncome={addIncome} />
           </FormContainer>
           <Incomes>
-            {incomes.map((income) => {
-              const {
-                _id: id,
-                title,
-                amount,
-                type,
-                date,
-                category,
-                description,
-              } = income;
+            {incomes
+              ? incomes.map((income) => {
+                  const {
+                    _id: id,
+                    title,
+                    amount,
+                    type,
+                    date,
+                    category,
+                    description,
+                  } = income;
 
-              return (
-                <IncomeItem
-                  key={id}
-                  title={title}
-                  amount={amount}
-                  date={date}
-                  description={description}
-                />
-              );
-            })}
+                  return (
+                    <IncomeItem
+                      key={id}
+                      title={title}
+                      amount={amount}
+                      type={type}
+                      date={date}
+                      category={category}
+                      description={description}
+                      $indicatorColor={"var(--color-green)"}
+                    />
+                  );
+                })
+              : null}
           </Incomes>
         </IncomeContent>
       </InnerLayout>
     </IncomesStyled>
   );
 };
-
-// {
-//     title: { type: String, required: true, trim: true, maxLength: 50 },
-//     amount: { type: Number, required: true, trim: true, maxLength: 20 },
-//     type: { type: String, default: "income" },
-//     date: { type: Date, required: true },
-//     category: { type: String, required: true },
-//     description: { type: String, required: true },
-//   }
-{
-  /* <li>
-  <h3>{title}</h3>
-</li>; */
-}

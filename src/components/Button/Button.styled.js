@@ -9,4 +9,5 @@ export const ButtonStyled = styled.button`
   align-items: center;
   gap: 0.5rem;
   transition: var(--transition);
+  cursor: pointer;
 `;

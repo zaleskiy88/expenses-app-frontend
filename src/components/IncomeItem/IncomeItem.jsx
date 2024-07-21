@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import {
   IncomeItemStyled,
   IconWrapper,
@@ -18,13 +19,13 @@ export const IncomeItem = ({
   date,
   category,
   description,
-  indicatorColor,
+  $indicatorColor,
   deleteItem,
 }) => {
   return (
     <IncomeItemStyled>
-      <IconWrapper> 2.6rem</IconWrapper>
-      <ContentWrapper>
+      <IconWrapper> </IconWrapper>
+      <ContentWrapper $indicatorColor={$indicatorColor}>
         <h5>{title}</h5>
         <InnerContentWrapper>
           <TextWrapper>
@@ -46,7 +47,7 @@ export const IncomeItem = ({
             <Button
               icon={<FaTrash />}
               color={"#ffff"}
-              bPad={"0.1rem"}
+              bPad={"1rem"}
               bRad={"50%"}
               bg={"var(--primary-text-color)"}
             />
@@ -55,4 +56,16 @@ export const IncomeItem = ({
       </ContentWrapper>
     </IncomeItemStyled>
   );
+};
+
+IncomeItem.propTypes = {
+  id: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  amount: PropTypes.number.isRequired,
+  type: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  indicatorcolor: PropTypes.string.isRequired,
+  deleteItem: PropTypes.func.isRequired,
 };
