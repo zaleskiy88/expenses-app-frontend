@@ -20,6 +20,7 @@ export const IconWrapper = styled.div`
   background-color: rgb(249 242 247);
   border: 2px solid #ffffff;
   border-radius: 10px;
+  padding: 0.5rem;
 `;
 
 export const ContentWrapper = styled.div`
@@ -29,7 +30,7 @@ export const ContentWrapper = styled.div`
   gap: 0.2rem;
 
   h5 {
-    font-size: 1.3rem;
+    font-size: 1rem;
     padding-left: 2rem;
     position: relative;
 
