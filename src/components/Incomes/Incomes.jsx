@@ -4,13 +4,15 @@ import {
   IncomeContent,
   FormContainer,
   Incomes,
+  TotalIncomeHeader,
 } from "./Incomes.styled";
 import { InnerLayout } from "../../styles/index";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { IncomesForm, IncomeItem } from "../index";
 
 export const Income = () => {
-  const { incomes, getIncomes, addIncome, deleteIncome } = useGlobalContext();
+  const { incomes, getIncomes, addIncome, deleteIncome, totalIncome } =
+    useGlobalContext();
 
   useEffect(() => {
     getIncomes();
@@ -20,7 +22,10 @@ export const Income = () => {
   return (
     <IncomesStyled>
       <InnerLayout>
-        <h2>Incomes</h2>
+        <h1>Incomes</h1>
+        <TotalIncomeHeader>
+          Total Income:<span>€{totalIncome()}</span>
+        </TotalIncomeHeader>
         <IncomeContent>
           <FormContainer>
             <IncomesForm addIncome={addIncome} />
