@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import moment from "moment";
 import {
   IncomeItemStyled,
   IconWrapper,
@@ -9,7 +10,18 @@ import {
 } from "./IncomeItem.styled";
 import { Button } from "../index";
 import { MdEuro } from "react-icons/md";
-import { FaCalendar, FaComment, FaTrash } from "react-icons/fa";
+import { FaMoneyBillTransfer } from "react-icons/fa6";
+import {
+  FaCalendar,
+  FaComment,
+  FaTrash,
+  FaMoneyBillAlt,
+  FaPiggyBank,
+  FaCar,
+  FaBitcoin,
+  FaGlobeAmericas,
+  FaGift,
+} from "react-icons/fa";
 
 export const IncomeItem = ({
   id,
@@ -22,9 +34,30 @@ export const IncomeItem = ({
   $indicatorColor,
   deleteItem,
 }) => {
+  const formattedDate = moment(date).format("DD/M/YY");
+
+  const categoryIcon = (category) => {
+    switch (category) {
+      case "salary":
+        return <FaMoneyBillAlt size={60} />;
+      case "inspection":
+        return <FaCar size={60} />;
+      case "crypto":
+        return <FaBitcoin size={60} />;
+      case "freelance":
+        return <FaGlobeAmericas size={60} />;
+      case "gift":
+        return <FaGift size={60} />;
+      case "transfer":
+        return <FaMoneyBillTransfer size={60} />;
+
+      default:
+        return <FaPiggyBank size={60} />;
+    }
+  };
   return (
     <IncomeItemStyled>
-      <IconWrapper> </IconWrapper>
+      <IconWrapper> {categoryIcon(category)}</IconWrapper>
       <ContentWrapper $indicatorColor={$indicatorColor}>
         <h5>{title}</h5>
         <InnerContentWrapper>
@@ -35,7 +68,7 @@ export const IncomeItem = ({
             </p>
             <p>
               {<FaCalendar />}
-              {date}
+              {formattedDate}
             </p>
             <p>
               {<FaComment />}
@@ -50,6 +83,7 @@ export const IncomeItem = ({
               bPad={"1rem"}
               bRad={"50%"}
               bg={"var(--primary-text-color)"}
+              onClick={() => deleteItem(id)}
             />
           </BtnWrapper>
         </InnerContentWrapper>
