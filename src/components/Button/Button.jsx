@@ -19,11 +19,11 @@ export const Button = ({ name, icon, onClick, bg, bPad, color, bRad }) => {
 };
 
 Button.propTypes = {
-  name: PropTypes.string.is,
-  icon: PropTypes.element.is,
-  onClick: PropTypes.func.is,
-  bg: PropTypes.string.is,
-  bPad: PropTypes.string.is,
-  color: PropTypes.string.is,
-  bRad: PropTypes.string.is,
+  name: PropTypes.string,
+  icon: PropTypes.element,
+  onClick: PropTypes.func,
+  bg: PropTypes.string,
+  bPad: PropTypes.string,
+  color: PropTypes.string,
+  bRad: PropTypes.string,
 };
