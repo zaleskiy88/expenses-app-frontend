@@ -10,7 +10,7 @@ import { useGlobalContext } from "../../context/useGlobalContext";
 import { IncomesForm, IncomeItem } from "../index";
 
 export const Income = () => {
-  const { incomes, getIncomes, addIncome } = useGlobalContext();
+  const { incomes, getIncomes, addIncome, deleteIncome } = useGlobalContext();
 
   useEffect(() => {
     getIncomes();
@@ -26,32 +26,36 @@ export const Income = () => {
             <IncomesForm addIncome={addIncome} />
           </FormContainer>
           <Incomes>
-            {incomes
-              ? incomes.map((income) => {
-                  const {
-                    _id: id,
-                    title,
-                    amount,
-                    type,
-                    date,
-                    category,
-                    description,
-                  } = income;
+            {incomes ? (
+              incomes.map((income) => {
+                const {
+                  _id: id,
+                  title,
+                  amount,
+                  type,
+                  date,
+                  category,
+                  description,
+                } = income;
 
-                  return (
-                    <IncomeItem
-                      key={id}
-                      title={title}
-                      amount={amount}
-                      type={type}
-                      date={date}
-                      category={category}
-                      description={description}
-                      $indicatorColor={"var(--color-green)"}
-                    />
-                  );
-                })
-              : null}
+                return (
+                  <IncomeItem
+                    key={id}
+                    id={id}
+                    title={title}
+                    amount={amount}
+                    type={type}
+                    date={date}
+                    category={category}
+                    description={description}
+                    $indicatorColor={"var(--color-green)"}
+                    deleteItem={deleteIncome}
+                  />
+                );
+              })
+            ) : (
+              <div>Loading...</div>
+            )}
           </Incomes>
         </IncomeContent>
       </InnerLayout>

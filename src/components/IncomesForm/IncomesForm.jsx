@@ -2,7 +2,12 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { IncomesFormSyled, InputStyled, Selects, SubmitBtnWrapper } from "./IncomesForm.styled";
+import {
+  IncomesFormSyled,
+  InputStyled,
+  Selects,
+  SubmitBtnWrapper,
+} from "./IncomesForm.styled";
 import { useGlobalContext } from "../../context/useGlobalContext";
 import { Button } from "../Button/Button";
 import { IoAdd } from "react-icons/io5";
@@ -13,13 +18,13 @@ export const IncomesForm = () => {
   const [formState, setFormState] = useState({
     title: "",
     amount: "",
-    type: "",
+    type: "income",
     date: new Date(),
     category: "",
     description: "",
   });
   const [categories, setCategories] = useState([]);
-  const { addIncome, incomes } = useGlobalContext();
+  const { addIncome } = useGlobalContext();
 
   // Destructuring formState
   const { title, amount, type, date, category, description } = formState;
@@ -43,7 +48,7 @@ export const IncomesForm = () => {
     setFormState({
       title: "",
       amount: "",
-      type: "",
+      type: "income",
       date: new Date(),
       category: "",
       description: "",
@@ -81,16 +86,6 @@ export const IncomesForm = () => {
       </div>
 
       <div className="input-control">
-        <InputStyled
-          type="text"
-          value={type}
-          name="type"
-          placeholder="Income Type"
-          onChange={handleFormInput("type")}
-        />
-      </div>
-
-      <div className="input-control">
         <DatePicker
           id="date"
           placeholderText="Income Date"
@@ -114,7 +109,11 @@ export const IncomesForm = () => {
           </option>
           {/* creating list of categories */}
           {categories.map(({ _id, value, title }) => (
-            <option key={_id} value={value} onChange={handleFormInput("category")}>
+            <option
+              key={_id}
+              value={value}
+              onChange={handleFormInput("category")}
+            >
               {title}
             </option>
           ))}
@@ -147,5 +146,3 @@ export const IncomesForm = () => {
     </IncomesFormSyled>
   );
 };
-
-//name, icon, onClick, bg, bPad, color, bRad
