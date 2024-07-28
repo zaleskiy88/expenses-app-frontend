@@ -1,22 +1,18 @@
 import { useEffect } from "react";
+import PropTypes from "prop-types";
 import {
   IncomesStyled,
   IncomeContent,
   FormContainer,
-  Incomes,
   TotalIncomeHeader,
 } from "./Incomes.styled";
 import { InnerLayout } from "../../styles/index";
-import { useGlobalContext } from "../../context/useGlobalContext";
-import { Form, IncomeItem } from "../index";
+import { Form, MoventsList } from "../index";
 
-export const Income = () => {
-  const { incomes, getIncomes, addIncome, deleteIncome, totalIncomes } =
-    useGlobalContext();
-
+export const Income = ({ data, getData, addData, deleteData, totalValue }) => {
   useEffect(() => {
     try {
-      getIncomes();
+      getData();
     } catch (error) {
       console.log(error);
     }
@@ -28,46 +24,24 @@ export const Income = () => {
       <InnerLayout>
         <h1>Incomes</h1>
         <TotalIncomeHeader>
-          Total Income:<span>€{totalIncomes()}</span>
+          Total Income:<span>€{totalValue()}</span>
         </TotalIncomeHeader>
         <IncomeContent>
           <FormContainer>
-            <Form formType={"incomes"} formHandler={addIncome} />
+            <Form formType={"incomes"} formHandler={addData} />
           </FormContainer>
-          <Incomes>
-            {incomes ? (
-              incomes.map((income) => {
-                const {
-                  _id: id,
-                  title,
-                  amount,
-                  type,
-                  date,
-                  category,
-                  description,
-                } = income;
-
-                return (
-                  <IncomeItem
-                    key={id}
-                    id={id}
-                    title={title}
-                    amount={amount}
-                    type={type}
-                    date={date}
-                    category={category}
-                    description={description}
-                    $indicatorColor={"var(--color-green)"}
-                    deleteItem={deleteIncome}
-                  />
-                );
-              })
-            ) : (
-              <div>Loading...</div>
-            )}
-          </Incomes>
+          <MoventsList data={data} deleteData={deleteData} />
         </IncomeContent>
       </InnerLayout>
     </IncomesStyled>
   );
+};
+
+//PropTypes
+Income.propTypes = {
+  data: PropTypes.array,
+  getData: PropTypes.func.isRequired,
+  addData: PropTypes.func.isRequired,
+  deleteData: PropTypes.func.isRequired,
+  totalValue: PropTypes.func.isRequired,
 };

@@ -31,7 +31,3 @@ export const IncomeContent = styled.div`
 `;
 
 export const FormContainer = styled.div``;
-
-export const Incomes = styled.ul`
-  flex: 1;
-`;

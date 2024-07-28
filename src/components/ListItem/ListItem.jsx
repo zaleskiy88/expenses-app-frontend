@@ -1,16 +1,24 @@
 import PropTypes from "prop-types";
 import moment from "moment";
 import {
-  IncomeItemStyled,
+  ListItemStyled,
   IconWrapper,
   InnerContentWrapper,
   BtnWrapper,
   ContentWrapper,
   TextWrapper,
-} from "./IncomeItem.styled";
+} from "./ListItem.styled";
 import { Button } from "../index";
-import { MdEuro } from "react-icons/md";
-import { FaMoneyBillTransfer } from "react-icons/fa6";
+//Icons//
+import {
+  MdEuro,
+  MdHealthAndSafety,
+  MdSubscriptions,
+  MdRestaurant,
+  MdOutlineTravelExplore,
+} from "react-icons/md";
+import { BiShieldQuarter } from "react-icons/bi";
+import { FaMoneyBillTransfer, FaCartShopping } from "react-icons/fa6";
 import {
   FaCalendar,
   FaComment,
@@ -21,9 +29,12 @@ import {
   FaBitcoin,
   FaGlobeAmericas,
   FaGift,
+  FaBook,
+  FaCreditCard,
 } from "react-icons/fa";
-
-export const IncomeItem = ({
+import { GiClothes, GiAutoRepair } from "react-icons/gi";
+/////////
+export const ListItem = ({
   id,
   title,
   amount,
@@ -49,13 +60,33 @@ export const IncomeItem = ({
         return <FaGift size={60} />;
       case "transfer":
         return <FaMoneyBillTransfer size={60} />;
+      case "education":
+        return <FaBook size={60} />;
+      case "supermarket":
+        return <FaCartShopping size={60} />;
+      case "health":
+        return <MdHealthAndSafety size={60} />;
+      case "subscriptions":
+        return <MdSubscriptions size={60} />;
+      case "restaurants":
+        return <MdRestaurant size={60} />;
+      case "clothing":
+        return <GiClothes size={60} />;
+      case "travel":
+        return <MdOutlineTravelExplore size={60} />;
+      case "credits":
+        return <FaCreditCard size={60} />;
+      case "maintenance":
+        return <GiAutoRepair size={60} />;
+      case "insurance":
+        return <BiShieldQuarter size={60} />;
 
       default:
         return <FaPiggyBank size={60} />;
     }
   };
   return (
-    <IncomeItemStyled>
+    <ListItemStyled>
       <IconWrapper> {categoryIcon(category)}</IconWrapper>
       <ContentWrapper $indicatorColor={$indicatorColor}>
         <h5>{title}</h5>
@@ -87,11 +118,11 @@ export const IncomeItem = ({
           </BtnWrapper>
         </InnerContentWrapper>
       </ContentWrapper>
-    </IncomeItemStyled>
+    </ListItemStyled>
   );
 };
 
-IncomeItem.propTypes = {
+ListItem.propTypes = {
   id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   amount: PropTypes.number.isRequired,

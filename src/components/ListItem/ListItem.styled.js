@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const IncomeItemStyled = styled.li`
+export const ListItemStyled = styled.li`
   background: #fcf6f9;
   border: 2px solid #ffffff;
   box-shadow: var(--shadow);
@@ -42,7 +42,10 @@ export const ContentWrapper = styled.div`
       left: 0;
       width: 0.8rem;
       height: 0.8rem;
-      background-color: ${(props) => props.$indicatorColor};
+      background-color: ${({ $indicatorColor }) =>
+        $indicatorColor === "incomes"
+          ? "var(--color-green)"
+          : "var(--color-delete)"};
       border-radius: 50px;
     }
   }
