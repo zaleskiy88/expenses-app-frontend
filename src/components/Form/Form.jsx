@@ -50,7 +50,7 @@ export const Form = ({ formType, formHandler }) => {
     setFormState({
       title: "",
       amount: "",
-      type: "incomes",
+      type: formType,
       date: new Date(),
       category: "",
       description: "",
