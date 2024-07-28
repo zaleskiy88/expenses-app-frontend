@@ -27,7 +27,6 @@ export const IncomeItem = ({
   id,
   title,
   amount,
-  type,
   date,
   category,
   description,
