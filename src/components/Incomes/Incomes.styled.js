@@ -14,7 +14,7 @@ export const TotalIncomeHeader = styled.h2`
   border-radius: 10px;
   box-shadow: var(--shadow);
 
-  margin: 1.5rem 0;
+  margin: 2rem 0 3rem 0;
   padding: 1.5rem 0;
   gap: 0.5rem;
   font-size: 1.7rem;
