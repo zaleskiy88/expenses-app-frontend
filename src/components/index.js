@@ -5,4 +5,5 @@ export * from "./Transactions/Transactions.jsx";
 export * from "./Navigation/Navigation.jsx";
 export * from "./Form/Form.jsx";
 export * from "./Button/Button.jsx";
-export * from "./IncomeItem/IncomeItem.jsx";
+export * from "./ListItem/ListItem.jsx";
+export * from "./List/List.jsx";
