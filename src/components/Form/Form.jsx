@@ -1,33 +1,31 @@
 import { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {
-  IncomesFormSyled,
+  FormSyled,
   InputStyled,
   Selects,
   SubmitBtnWrapper,
-} from "./IncomesForm.styled";
-import { useGlobalContext } from "../../context/useGlobalContext";
+} from "./Form.styled";
 import { Button } from "../Button/Button";
 import { IoAdd } from "react-icons/io5";
 
 const BASE_URL = "http://localhost:5000/api/v1/";
 
-export const IncomesForm = () => {
+export const Form = ({ formType, formHandler }) => {
   const [formState, setFormState] = useState({
     title: "",
     amount: "",
-    type: "income",
+    type: formType,
     date: new Date(),
     category: "",
     description: "",
   });
   const [categories, setCategories] = useState([]);
-  const { addIncome } = useGlobalContext();
-
   // Destructuring formState
-  const { title, amount, type, date, category, description } = formState;
+  const { title, amount, date, category, description } = formState;
 
   const handleFormInput = (name) => (event) => {
     setFormState({ ...formState, [name]: event.target.value });
@@ -39,16 +37,20 @@ export const IncomesForm = () => {
 
   const getCategories = async () => {
     const response = await axios.get(`${BASE_URL}/get-categories`);
-    setCategories(response.data);
+    const filterredCategories = await response.data.filter(
+      (income) => income.type === formType
+    );
+
+    setCategories(filterredCategories);
   };
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    addIncome(formState);
+    formHandler(formState);
     setFormState({
       title: "",
       amount: "",
-      type: "income",
+      type: "incomes",
       date: new Date(),
       category: "",
       description: "",
@@ -61,10 +63,11 @@ export const IncomesForm = () => {
     } catch (error) {
       console.log(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <IncomesFormSyled onSubmit={handleFormSubmit}>
+    <FormSyled onSubmit={handleFormSubmit}>
       <div className="input-control">
         <InputStyled
           type="text"
@@ -143,6 +146,11 @@ export const IncomesForm = () => {
           color={"#FFF"}
         />
       </SubmitBtnWrapper>
-    </IncomesFormSyled>
+    </FormSyled>
   );
+};
+
+Form.propTypes = {
+  formType: PropTypes.string.isRequired,
+  formHandler: PropTypes.func.isRequired,
 };

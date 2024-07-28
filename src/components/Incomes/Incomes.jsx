@@ -8,14 +8,18 @@ import {
 } from "./Incomes.styled";
 import { InnerLayout } from "../../styles/index";
 import { useGlobalContext } from "../../context/useGlobalContext";
-import { IncomesForm, IncomeItem } from "../index";
+import { Form, IncomeItem } from "../index";
 
 export const Income = () => {
-  const { incomes, getIncomes, addIncome, deleteIncome, totalIncome } =
+  const { incomes, getIncomes, addIncome, deleteIncome, totalIncomes } =
     useGlobalContext();
 
   useEffect(() => {
-    getIncomes();
+    try {
+      getIncomes();
+    } catch (error) {
+      console.log(error);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -24,11 +28,11 @@ export const Income = () => {
       <InnerLayout>
         <h1>Incomes</h1>
         <TotalIncomeHeader>
-          Total Income:<span>€{totalIncome()}</span>
+          Total Income:<span>€{totalIncomes()}</span>
         </TotalIncomeHeader>
         <IncomeContent>
           <FormContainer>
-            <IncomesForm addIncome={addIncome} />
+            <Form formType={"incomes"} formHandler={addIncome} />
           </FormContainer>
           <Incomes>
             {incomes ? (
