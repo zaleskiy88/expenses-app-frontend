@@ -6,8 +6,18 @@ import { Dashboard, Expenses, Income, Transactions } from "./index";
 
 function App() {
   const [active, setActive] = useState(1);
-  const { incomes, getIncomes, addIncome, deleteIncome, totalIncomes } =
-    useGlobalContext();
+  const {
+    incomes,
+    getIncomes,
+    addIncome,
+    deleteIncome,
+    totalIncomes,
+    expenses,
+    getExpenses,
+    addExpenses,
+    deleteExpense,
+    totalExpenses,
+  } = useGlobalContext();
 
   const displayComponent = () => {
     const components = {
@@ -22,7 +32,15 @@ function App() {
           totalValue={totalIncomes}
         />
       ),
-      4: <Expenses />,
+      4: (
+        <Expenses
+          data={expenses}
+          getData={getExpenses}
+          addData={addExpenses}
+          deleteData={deleteExpense}
+          totalValue={totalExpenses}
+        />
+      ),
     };
 
     return components[active] || <Dashboard />;
