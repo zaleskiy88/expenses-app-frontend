@@ -1,7 +1,7 @@
 import { List } from "./List.styled";
 import { ListItem } from "../index";
 import PropTypes from "prop-types";
-export const MoventsList = ({ data, deleteData }) => {
+export const MovementsList = ({ data, deleteData }) => {
   return (
     <List>
       {data
@@ -37,7 +37,7 @@ export const MoventsList = ({ data, deleteData }) => {
 };
 
 //PropTypes
-MoventsList.propTypes = {
+MovementsList.propTypes = {
   data: PropTypes.array,
   deleteData: PropTypes.func,
 };
