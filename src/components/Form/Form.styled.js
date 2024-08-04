@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
-export const FormSyled = styled.form`
+export const FormContainer = styled.div``;
+
+export const FormStyled = styled.form`
   display: flex;
   flex-direction: column;
   gap: 1rem;
