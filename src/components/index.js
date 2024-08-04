@@ -7,3 +7,4 @@ export * from "./Form/Form.jsx";
 export * from "./Button/Button.jsx";
 export * from "./ListItem/ListItem.jsx";
 export * from "./List/List.jsx";
+export * from "./Chart/Chart.jsx";
