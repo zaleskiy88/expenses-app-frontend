@@ -1,13 +1,12 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
+import { IncomesStyled } from "./Incomes.styled";
 import {
-  IncomesStyled,
-  IncomeContent,
-  FormContainer,
-  TotalIncomeHeader,
-} from "./Incomes.styled";
-import { InnerLayout } from "../../styles/index";
-import { Form, MoventsList } from "../index";
+  InnerLayout,
+  TotalValueHeader,
+  MainContentContainer,
+} from "../../styles/index";
+import { Form, MovementsList } from "../index";
 
 export const Income = ({ data, getData, addData, deleteData, totalValue }) => {
   useEffect(() => {
@@ -23,15 +22,13 @@ export const Income = ({ data, getData, addData, deleteData, totalValue }) => {
     <IncomesStyled>
       <InnerLayout>
         <h1>Incomes</h1>
-        <TotalIncomeHeader>
+        <TotalValueHeader $type={"incomes"}>
           Total Income:<span>€{totalValue()}</span>
-        </TotalIncomeHeader>
-        <IncomeContent>
-          <FormContainer>
-            <Form formType={"incomes"} formHandler={addData} />
-          </FormContainer>
-          <MoventsList data={data} deleteData={deleteData} />
-        </IncomeContent>
+        </TotalValueHeader>
+        <MainContentContainer>
+          <Form formType={"incomes"} formHandler={addData} />
+          <MovementsList data={data} deleteData={deleteData} />
+        </MainContentContainer>
       </InnerLayout>
     </IncomesStyled>
   );
