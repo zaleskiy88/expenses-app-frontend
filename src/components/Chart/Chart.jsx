@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,7 +27,14 @@ ChartJS.register(
 );
 
 export const Chart = () => {
-  const { incomes, expenses } = useGlobalContext();
+  const { getIncomes, getExpenses, incomes, expenses } = useGlobalContext();
+
+  useEffect(() => {
+    getIncomes();
+    getExpenses();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const data = {
     labels: incomes.map((income) => {
       const { date } = income;
