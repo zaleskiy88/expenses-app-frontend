@@ -86,6 +86,25 @@ export const GlobalProvider = ({ children }) => {
     return total;
   };
 
+  /////////////////////// Transactions //////////////////////////////////////////
+  const transactionsHistory = () => {
+    /**
+     * Returns a sorted array of all transactions in the application,
+     * combining incomes and expenses.
+     * @return {Array} An array of objects representing transactions,
+     * sorted in descending order by creation date.
+     */
+    const history = [...incomes, ...expenses];
+    return history.sort(
+      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+    );
+  };
+
+  /////////////////////// Other //////////////////////////////////////////
+  const totalBalance = () => {
+    return totalIncomes() - totalExpenses();
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -99,6 +118,8 @@ export const GlobalProvider = ({ children }) => {
         addExpenses,
         deleteExpense,
         totalExpenses,
+        totalBalance,
+        transactionsHistory,
       }}
     >
       {children}
