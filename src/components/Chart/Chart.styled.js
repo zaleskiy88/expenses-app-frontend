@@ -7,5 +7,5 @@ export const ChartStyled = styled.div`
   padding: 1rem;
   border-radius: 20px;
   max-height: 100%;
-  max-width: 95%;
+  max-width: 100%;
 `;
