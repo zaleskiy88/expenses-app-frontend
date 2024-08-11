@@ -1,11 +1,16 @@
 import styled from "styled-components";
 
-export const HistoryStyled = styled.div``;
+export const HistoryStyled = styled.div`
+  Button {
+    margin-top: 0.5rem;
+  }
+`;
 
 export const TransactionsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  margin-top: 2rem;
 `;
 
 export const TransactionsItem = styled.li`
