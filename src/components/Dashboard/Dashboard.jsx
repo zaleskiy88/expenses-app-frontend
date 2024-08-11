@@ -8,7 +8,6 @@ import {
   TransactionsHistoryContainer,
 } from "./Dashboard.styled";
 import { InnerLayout } from "../../styles/index";
-import { MdEuro } from "react-icons/md";
 import { Chart, TransactionsHistory, MinMax } from "../index";
 
 export const Dashboard = () => {
@@ -25,18 +24,12 @@ export const Dashboard = () => {
             <AmountsContainer>
               <AmountContainer>
                 <h2>Total Income</h2>
-                <p>
-                  {<MdEuro />}
-                  {totalIncomes()}
-                </p>
+                <p>€{totalIncomes()}</p>
               </AmountContainer>
 
               <AmountContainer>
                 <h2>Total Expense</h2>
-                <p>
-                  {<MdEuro />}
-                  {totalExpenses()}
-                </p>
+                <p>€{totalExpenses()}</p>
               </AmountContainer>
 
               <AmountContainer>
@@ -49,8 +42,7 @@ export const Dashboard = () => {
                         : "var(--color-delete)",
                   }}
                 >
-                  {<MdEuro />}
-                  {totalBalance()}
+                  €{totalBalance()}
                 </p>
               </AmountContainer>
             </AmountsContainer>
