@@ -28,8 +28,8 @@ export const GlobalProvider = ({ children }) => {
       const res = await axios.post(`${BASE_URL}/add-income`, income);
       setIncomes(res.data);
     } catch (err) {
-      setError(err.message);
-      console.log(err);
+      setError(err.response.data.message);
+      console.log(err.response.data.message);
     }
   };
 
@@ -38,8 +38,8 @@ export const GlobalProvider = ({ children }) => {
       const res = await axios.delete(`${BASE_URL}/delete-income/${id}`);
       setIncomes(res.data);
     } catch (err) {
-      setError(err.message);
-      console.log(err);
+      setError(err.response.data.message);
+      console.log(err.response.data.message);
     }
   };
 
@@ -55,7 +55,7 @@ export const GlobalProvider = ({ children }) => {
       const res = await axios.get(`${BASE_URL}/get-expenses`);
       setExpenses(res.data);
     } catch (err) {
-      setError(err.message);
+      setError(err.response.data.message);
       console.log(err);
     }
   };
@@ -65,7 +65,7 @@ export const GlobalProvider = ({ children }) => {
       const res = await axios.post(`${BASE_URL}/add-expense`, expense);
       setExpenses(res.data);
     } catch (err) {
-      setError(err.message);
+      setError(err.response.data.message);
       console.log(err);
     }
   };
@@ -75,7 +75,7 @@ export const GlobalProvider = ({ children }) => {
       const res = await axios.delete(`${BASE_URL}/delete-expense/${id}`);
       setExpenses(res.data);
     } catch (err) {
-      setError(err.message);
+      setError(err.response.data.message);
       console.log(err);
     }
   };
@@ -120,6 +120,7 @@ export const GlobalProvider = ({ children }) => {
         totalExpenses,
         totalBalance,
         transactionsHistory,
+        error,
       }}
     >
       {children}
