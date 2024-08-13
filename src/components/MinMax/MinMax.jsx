@@ -12,7 +12,7 @@ export const MinMax = ({ data, title }) => {
       </MinMaxTitle>
 
       <MinMaxValues>
-        <p>€{min > 0 ? min : 0} </p>
+        <p>€{min > 0 && min !== Infinity ? min : 0} </p>
         <p>€{max > 0 ? max : 0}</p>
       </MinMaxValues>
     </div>
