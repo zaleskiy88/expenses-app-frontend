@@ -14,7 +14,7 @@ import {
 import { Button } from "../Button/Button";
 import { IoAdd } from "react-icons/io5";
 
-const BASE_URL = "http://localhost:5000/api/v1/";
+const BASE_URL = "http://localhost:5000/api/v1";
 
 export const Form = ({ formType, formHandler }) => {
   const [formState, setFormState] = useState({
