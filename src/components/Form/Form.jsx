@@ -20,7 +20,6 @@ export const Form = ({ formType, formHandler }) => {
   const [formState, setFormState] = useState({
     title: "",
     amount: "",
-    type: formType,
     date: new Date(),
     category: "",
     description: "",
@@ -41,7 +40,7 @@ export const Form = ({ formType, formHandler }) => {
   };
 
   const getCategories = async () => {
-    const response = await axios.get(`${BASE_URL}/get-categories`);
+    const response = await axios.get(`${BASE_URL}/categories/get-categories`);
     const filterredCategories = await response.data.filter(
       (income) => income.type === formType
     );
@@ -55,7 +54,6 @@ export const Form = ({ formType, formHandler }) => {
     setFormState({
       title: "",
       amount: "",
-      type: formType,
       date: new Date(),
       category: "",
       description: "",
