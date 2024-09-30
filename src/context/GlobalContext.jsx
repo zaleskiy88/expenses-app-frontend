@@ -4,6 +4,12 @@ import axios from "axios";
 
 const BASE_URL = "http://localhost:5000/api/v1";
 
+////////////////////////// Work in progress////////////////////////////////////////////////////////
+// const token =
+//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjA0OTc0YzBiZTc4NDg0YjZlNmE4MCIsImlhdCI6MTcyNzcyNTA3MSwiZXhwIjoxNzI3NzI4NjcxfQ.H0_z74Qr-t-siv1-XLKDANQyoZfUg1s-KY8t5YbIK-I";
+// axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
@@ -15,7 +21,7 @@ export const GlobalProvider = ({ children }) => {
   //////////// Incomes ////////////////
   const getIncomes = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/get-incomes`);
+      const res = await axios.get(`${BASE_URL}/incomes/get-incomes`);
       setIncomes(res.data);
     } catch (err) {
       setError(err.message);
@@ -25,7 +31,7 @@ export const GlobalProvider = ({ children }) => {
 
   const addIncome = async (income) => {
     try {
-      const res = await axios.post(`${BASE_URL}/add-income`, income);
+      const res = await axios.post(`${BASE_URL}/incomes/add-income`, income);
       setIncomes(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -35,7 +41,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteIncome = async (id) => {
     try {
-      const res = await axios.delete(`${BASE_URL}/delete-income/${id}`);
+      const res = await axios.delete(`${BASE_URL}/incomes/delete-income/${id}`);
       setIncomes(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -52,7 +58,7 @@ export const GlobalProvider = ({ children }) => {
   /////////////////////// Expenses //////////////////////////////////////////
   const getExpenses = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/get-expenses`);
+      const res = await axios.get(`${BASE_URL}/expenses/get-expenses`);
       setExpenses(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -62,7 +68,7 @@ export const GlobalProvider = ({ children }) => {
 
   const addExpenses = async (expense) => {
     try {
-      const res = await axios.post(`${BASE_URL}/add-expense`, expense);
+      const res = await axios.post(`${BASE_URL}/expenses/add-expense`, expense);
       setExpenses(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -72,7 +78,9 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteExpense = async (id) => {
     try {
-      const res = await axios.delete(`${BASE_URL}/delete-expense/${id}`);
+      const res = await axios.delete(
+        `${BASE_URL}/expenses/delete-expense/${id}`
+      );
       setExpenses(res.data);
     } catch (err) {
       setError(err.response.data.message);
