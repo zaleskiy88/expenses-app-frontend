@@ -4,22 +4,17 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import { capitalizeFirstLetter } from "../../utils/CapitalizeFirstLet";
 import "react-datepicker/dist/react-datepicker.css";
-import {
-  FormStyled,
-  InputStyled,
-  Selects,
-  SubmitBtnWrapper,
-  FormContainer,
-} from "./Form.styled";
+import { FormStyled, InputStyled, Selects, SubmitBtnWrapper, FormContainer } from "./Form.styled";
 import { Button } from "../Button/Button";
 import { IoAdd } from "react-icons/io5";
 
-const BASE_URL = "http://localhost:5000/api/v1";
+const BASE_URL = "https://expenses-app-backend.onrender.com/api/v1/"; //"http://localhost:5000/api/v1/";
 
 export const Form = ({ formType, formHandler }) => {
   const [formState, setFormState] = useState({
     title: "",
     amount: "",
+    type: formType,
     date: new Date(),
     category: "",
     description: "",
@@ -40,10 +35,8 @@ export const Form = ({ formType, formHandler }) => {
   };
 
   const getCategories = async () => {
-    const response = await axios.get(`${BASE_URL}/categories/get-categories`);
-    const filterredCategories = await response.data.filter(
-      (income) => income.type === formType
-    );
+    const response = await axios.get(`${BASE_URL}/get-categories`);
+    const filterredCategories = await response.data.filter((income) => income.type === formType);
 
     setCategories(filterredCategories);
   };
@@ -54,6 +47,7 @@ export const Form = ({ formType, formHandler }) => {
     setFormState({
       title: "",
       amount: "",
+      type: formType,
       date: new Date(),
       category: "",
       description: "",
@@ -116,11 +110,7 @@ export const Form = ({ formType, formHandler }) => {
             </option>
             {/* creating list of categories */}
             {categories.map(({ _id, value, title }) => (
-              <option
-                key={_id}
-                value={value}
-                onChange={handleFormInput("category")}
-              >
+              <option key={_id} value={value} onChange={handleFormInput("category")}>
                 {title}
               </option>
             ))}

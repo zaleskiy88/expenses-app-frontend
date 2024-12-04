@@ -2,13 +2,7 @@ import { createContext, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
-const BASE_URL = "http://localhost:5000/api/v1";
-
-////////////////////////// Work in progress////////////////////////////////////////////////////////
-// const token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjA0OTc0YzBiZTc4NDg0YjZlNmE4MCIsImlhdCI6MTcyNzcyNTA3MSwiZXhwIjoxNzI3NzI4NjcxfQ.H0_z74Qr-t-siv1-XLKDANQyoZfUg1s-KY8t5YbIK-I";
-// axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-//////////////////////////////////////////////////////////////////////////////////////////////////////
+const BASE_URL = "https://expenses-app-backend.onrender.com/api/v1/"; //"http://localhost:5000/api/v1/";
 
 export const GlobalContext = createContext();
 
@@ -21,7 +15,7 @@ export const GlobalProvider = ({ children }) => {
   //////////// Incomes ////////////////
   const getIncomes = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/incomes/get-incomes`);
+      const res = await axios.get(`${BASE_URL}incomes/get-incomes`);
       setIncomes(res.data);
     } catch (err) {
       setError(err.message);
@@ -31,7 +25,7 @@ export const GlobalProvider = ({ children }) => {
 
   const addIncome = async (income) => {
     try {
-      const res = await axios.post(`${BASE_URL}/incomes/add-income`, income);
+      const res = await axios.post(`${BASE_URL}incomes/add-income`, income);
       setIncomes(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -41,7 +35,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteIncome = async (id) => {
     try {
-      const res = await axios.delete(`${BASE_URL}/incomes/delete-income/${id}`);
+      const res = await axios.delete(`${BASE_URL}incomes/delete-income/${id}`);
       setIncomes(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -58,7 +52,7 @@ export const GlobalProvider = ({ children }) => {
   /////////////////////// Expenses //////////////////////////////////////////
   const getExpenses = async () => {
     try {
-      const res = await axios.get(`${BASE_URL}/expenses/get-expenses`);
+      const res = await axios.get(`${BASE_URL}expenses/get-expenses`);
       setExpenses(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -68,7 +62,7 @@ export const GlobalProvider = ({ children }) => {
 
   const addExpenses = async (expense) => {
     try {
-      const res = await axios.post(`${BASE_URL}/expenses/add-expense`, expense);
+      const res = await axios.post(`${BASE_URL}expenses/add-expense`, expense);
       setExpenses(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -78,9 +72,7 @@ export const GlobalProvider = ({ children }) => {
 
   const deleteExpense = async (id) => {
     try {
-      const res = await axios.delete(
-        `${BASE_URL}/expenses/delete-expense/${id}`
-      );
+      const res = await axios.delete(`${BASE_URL}expenses/delete-expense/${id}`);
       setExpenses(res.data);
     } catch (err) {
       setError(err.response.data.message);
@@ -103,9 +95,7 @@ export const GlobalProvider = ({ children }) => {
      * sorted in descending order by creation date.
      */
     const history = [...incomes, ...expenses];
-    return history.sort(
-      (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-    );
+    return history.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   };
 
   /////////////////////// Other //////////////////////////////////////////
