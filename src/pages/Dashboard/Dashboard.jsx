@@ -8,11 +8,10 @@ import {
   TransactionsHistoryContainer,
 } from "./Dashboard.styled";
 import { InnerLayout } from "../../styles/index";
-import { Chart, TransactionsHistory, MinMax } from "../index";
+import { Chart, TransactionsHistory, MinMax } from "../../components/index";
 
 export const Dashboard = () => {
-  const { incomes, expenses, totalIncomes, totalExpenses, totalBalance } =
-    useGlobalContext();
+  const { incomes, expenses, totalIncomes, totalExpenses, totalBalance } = useGlobalContext();
   return (
     <DashboardStyled>
       <InnerLayout>
@@ -36,10 +35,7 @@ export const Dashboard = () => {
                 <h2>Total Balance</h2>
                 <p
                   style={{
-                    color:
-                      totalBalance() > 0
-                        ? "var(--color-green)"
-                        : "var(--color-delete)",
+                    color: totalBalance() > 0 ? "var(--color-green)" : "var(--color-delete)",
                   }}
                 >
                   €{totalBalance()}
