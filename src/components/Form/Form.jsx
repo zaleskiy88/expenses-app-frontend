@@ -14,7 +14,6 @@ export const Form = ({ formType, formHandler }) => {
   const [formState, setFormState] = useState({
     title: "",
     amount: "",
-    type: formType,
     date: new Date(),
     category: "",
     description: "",
