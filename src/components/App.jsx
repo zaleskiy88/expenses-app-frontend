@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useGlobalContext } from "../context/useGlobalContext";
 import { AppStyled, MainLayout } from "../styles/index";
 import { Navigation } from "./Navigation/Navigation";
-import { Dashboard, Expenses, Income, Transactions } from "./index";
+import { Dashboard, Expenses, Income, Transactions } from "../pages/index";
 
 function App() {
   const [active, setActive] = useState(1);

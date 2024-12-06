@@ -1,19 +1,10 @@
 import { useEffect } from "react";
 import PropTypes from "prop-types";
-import { ExpensesStyled } from "./Expenses.styled";
-import {
-  InnerLayout,
-  TotalValueHeader,
-  MainContentContainer,
-} from "../../styles/index";
-import { Form, MovementsList } from "../index";
-export const Expenses = ({
-  data,
-  getData,
-  addData,
-  deleteData,
-  totalValue,
-}) => {
+import { IncomesStyled } from "./Incomes.styled";
+import { InnerLayout, TotalValueHeader, MainContentContainer } from "../../styles/index";
+import { Form, MovementsList } from "../../components/index";
+
+export const Income = ({ data, getData, addData, deleteData, totalValue }) => {
   useEffect(() => {
     try {
       getData();
@@ -24,24 +15,23 @@ export const Expenses = ({
   }, []);
 
   return (
-    <ExpensesStyled>
+    <IncomesStyled>
       <InnerLayout>
-        <h1>Expenses</h1>
-        <TotalValueHeader $type={"expenses"}>
-          Total Expense:<span>€{totalValue()}</span>
+        <h1>Incomes</h1>
+        <TotalValueHeader $type={"incomes"}>
+          Total Income:<span>€{totalValue()}</span>
         </TotalValueHeader>
         <MainContentContainer>
-          <Form formType={"expenses"} formHandler={addData} />
-
+          <Form formType={"incomes"} formHandler={addData} />
           <MovementsList data={data} deleteData={deleteData} />
         </MainContentContainer>
       </InnerLayout>
-    </ExpensesStyled>
+    </IncomesStyled>
   );
 };
 
 //PropTypes
-Expenses.propTypes = {
+Income.propTypes = {
   data: PropTypes.array,
   getData: PropTypes.func.isRequired,
   addData: PropTypes.func.isRequired,

@@ -1,7 +1,3 @@
-export * from "../pages/Dashboard/Dashboard.jsx";
-export * from "./Expenses/Expenses.jsx";
-export * from "./Incomes/Incomes.jsx";
-export * from "./Transactions/Transactions.jsx";
 export * from "./Navigation/Navigation.jsx";
 export * from "./Form/Form.jsx";
 export * from "./Button/Button.jsx";
