@@ -15,16 +15,7 @@ import { ChartStyled } from "./Chart.styled";
 import moment from "moment";
 import { useGlobalContext } from "../../context/useGlobalContext";
 
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Legend,
-  Tooltip,
-  ArcElement
-);
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Legend, Tooltip, ArcElement);
 
 export const Chart = () => {
   const { getIncomes, getExpenses, incomes, expenses } = useGlobalContext();
@@ -35,11 +26,15 @@ export const Chart = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //Creating array of all dates of incomes and expenses to be used in chart labels
+  const allDates = [...incomes.map((income) => income.date), ...expenses.map((expense) => expense.date)];
+
   const data = {
-    labels: incomes.map((income) => {
-      const { date } = income;
-      return moment(date).format("DD/M/YYYY");
-    }),
+    labels: allDates
+      .map((date) => {
+        return moment(date).format("DD/M/YYYY");
+      })
+      .sort(),
 
     datasets: [
       {
@@ -74,11 +69,7 @@ export const Chart = () => {
 
   return (
     <ChartStyled>
-      <Line
-        data={data}
-        options={chartOptions}
-        style={{ display: "inline-block" }}
-      />
+      <Line data={data} options={chartOptions} style={{ display: "inline-block" }} />
     </ChartStyled>
   );
 };
