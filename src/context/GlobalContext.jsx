@@ -5,9 +5,9 @@ import axios from "axios";
 const BASE_URL = "https://expenses-app-backend.onrender.com/api/v1/"; //"http://localhost:5000/api/v1/";
 
 ////////////////////////// Work in progress////////////////////////////////////////////////////////
-// const token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjA0OTc0YzBiZTc4NDg0YjZlNmE4MCIsImlhdCI6MTczMzMyNzk3MCwiZXhwIjoxNzMzMzI4NTcwfQ.A__xPLCQHSFt_0tJ35jVCixWdly_aRj8HZglqDgoLNQ";
-// axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjA0OTc0YzBiZTc4NDg0YjZlNmE4MCIsImlhdCI6MTczMzMyNzk3MCwiZXhwIjoxNzMzMzI4NTcwfQ.A__xPLCQHSFt_0tJ35jVCixWdly_aRj8HZglqDgoLNQ";
+axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const GlobalContext = createContext();
