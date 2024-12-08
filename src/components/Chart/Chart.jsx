@@ -28,13 +28,14 @@ export const Chart = () => {
 
   //Creating array of all dates of incomes and expenses to be used in chart labels
   const allDates = [...incomes.map((income) => income.date), ...expenses.map((expense) => expense.date)];
+  const formattedDates = allDates
+    .map((date) => {
+      return moment(date).format("DD/M/YYYY");
+    })
+    .sort();
 
   const data = {
-    labels: allDates
-      .map((date) => {
-        return moment(date).format("DD/M/YYYY");
-      })
-      .sort(),
+    labels: formattedDates,
 
     datasets: [
       {
