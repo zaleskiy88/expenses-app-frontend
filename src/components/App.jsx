@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { Outlet, Routes, Route } from "react-router";
 import { useGlobalContext } from "../context/useGlobalContext";
 import { AppStyled, MainLayout } from "../styles/index";
 import { Navigation } from "./Navigation/Navigation";
 import { Dashboard, Expenses, Income, Transactions } from "../pages/index";
 
 function App() {
-  const [active, setActive] = useState(1);
   const {
     incomes,
     getIncomes,
@@ -19,11 +19,58 @@ function App() {
     totalExpenses,
   } = useGlobalContext();
 
-  const displayComponent = () => {
-    const components = {
-      1: <Dashboard />,
-      2: <Transactions />,
-      3: (
+  return (
+    <AppStyled>
+      <MainLayout>
+        <Navigation />
+        <main>
+          <Routes>
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="transactions" element={<Transactions />} />
+            <Route
+              path="incomes"
+              element={
+                <Income
+                  data={incomes}
+                  getData={getIncomes}
+                  addData={addIncome}
+                  deleteData={deleteIncome}
+                  totalValue={totalIncomes}
+                />
+              }
+            />
+            <Route
+              path="expenses"
+              element={
+                <Expenses
+                  data={expenses}
+                  getData={getExpenses}
+                  addData={addExpenses}
+                  deleteData={deleteExpense}
+                  totalValue={totalExpenses}
+                />
+              }
+            />
+          </Routes>
+        </main>
+        <Outlet />
+      </MainLayout>
+    </AppStyled>
+  );
+}
+
+export default App;
+
+{
+  /* <BrowserRouter>
+  
+
+  <Routes>
+    <Route path="dashboard" element={<Dashboard />} />
+    <Route path="transactions" element={<Transactions />} />
+    <Route
+      path="incomes"
+      element={
         <Income
           data={incomes}
           getData={getIncomes}
@@ -31,8 +78,11 @@ function App() {
           deleteData={deleteIncome}
           totalValue={totalIncomes}
         />
-      ),
-      4: (
+      }
+    />
+    <Route
+      path="expenses"
+      element={
         <Expenses
           data={expenses}
           getData={getExpenses}
@@ -40,23 +90,8 @@ function App() {
           deleteData={deleteExpense}
           totalValue={totalExpenses}
         />
-      ),
-    };
-
-    return components[active] || <Dashboard />;
-  };
-
-  ////////////////////////////////////////////////////////////////
-
-  ////////////////////////////////////////////////////////////////
-  return (
-    <AppStyled>
-      <MainLayout>
-        <Navigation active={active} setActive={setActive} />
-        <main>{displayComponent()}</main>
-      </MainLayout>
-    </AppStyled>
-  );
+      }
+    />
+  </Routes>
+</BrowserRouter>; */
 }
-
-export default App;
