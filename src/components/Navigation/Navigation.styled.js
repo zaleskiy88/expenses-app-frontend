@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { NavLink } from "react-router";
 
 export const NavStyled = styled.nav`
   padding: 2rem 1.5rem;
@@ -41,20 +42,22 @@ export const NavMenu = styled.ul`
   flex: 1;
   display: flex;
   flex-direction: column;
+`;
 
-  li {
-    display: grid;
-    grid-template-columns: 40px auto;
-    align-items: center;
-    margin: 0.6rem 0;
-    font-weight: 500;
-    cursor: pointer;
-    transition: var(--transition);
-    padding-left: 1rem;
-    position: relative;
-  }
+export const StyledNavLink = styled(NavLink)`
+  display: grid;
+  grid-template-columns: 40px auto;
+  align-items: center;
+  margin: 0.6rem 0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  padding-left: 1rem;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
 
-  .active {
+  &.active {
     color: var(--primary-text-color);
 
     &::before {
