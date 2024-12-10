@@ -1,17 +1,11 @@
 import PropTypes from "prop-types";
-import {
-  NavStyled,
-  UserContainer,
-  UserAvatar,
-  NavMenu,
-  MenuItemIcon,
-} from "./Navigation.styled";
+import { NavStyled, UserContainer, UserAvatar, NavMenu, MenuItemIcon, StyledNavLink } from "./Navigation.styled";
 import { menuItems } from "../../utils/menuItems";
 import { FaSignOutAlt } from "react-icons/fa";
 
 import avatar from "../../img/avatar.png";
 
-export const Navigation = ({ active, setActive }) => {
+export const Navigation = () => {
   return (
     <NavStyled>
       <UserContainer>
@@ -23,16 +17,14 @@ export const Navigation = ({ active, setActive }) => {
       </UserContainer>
 
       <NavMenu>
-        {/* Rendereing menu items */}
+        {/* Rendereing menu items. If adding new item, add it at menuItems array */}
         {menuItems.map((item) => {
           return (
-            <li
-              key={item.id}
-              onClick={() => setActive(item.id)}
-              className={active === item.id ? "active" : ""}
-            >
-              <MenuItemIcon> {<item.icon />}</MenuItemIcon>
-              <span>{item.title}</span>
+            <li key={item.id}>
+              <StyledNavLink to={item.link}>
+                <MenuItemIcon> {<item.icon />}</MenuItemIcon>
+                <span>{item.title}</span>
+              </StyledNavLink>
             </li>
           );
         })}
