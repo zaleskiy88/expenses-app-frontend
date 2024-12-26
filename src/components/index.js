@@ -6,3 +6,4 @@ export * from "./List/List.jsx";
 export * from "./Chart/Chart.jsx";
 export * from "./TransactionsHistory/TransactionsHistory.jsx";
 export * from "./MinMax/MinMax.jsx";
+export * from "./ProtectedRoute/ProtectedRoute.jsx";

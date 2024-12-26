@@ -4,19 +4,70 @@ import axios from "axios";
 
 const BASE_URL = "https://expenses-app-backend.onrender.com/api/v1/"; //"http://localhost:5000/api/v1/";
 
-////////////////////////// Work in progress////////////////////////////////////////////////////////
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ZjA0OTc0YzBiZTc4NDg0YjZlNmE4MCIsImlhdCI6MTczMzMyNzk3MCwiZXhwIjoxNzMzMzI4NTcwfQ.A__xPLCQHSFt_0tJ35jVCixWdly_aRj8HZglqDgoLNQ";
-axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
+  const [user, setUser] = useState({});
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    if (localStorage.getItem("token")) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${localStorage.getItem("token")}`;
+      return true;
+    }
+    return false;
+  });
   const [incomes, setIncomes] = useState([]);
   const [expenses, setExpenses] = useState([]);
   const [transactions, setTransactions] = useState([]);
   const [error, setError] = useState(null);
+
+  /////////////////////// Auth //////////////////////////////////////////
+  const register = async (credentials) => {
+    try {
+      const res = await axios.post(`${BASE_URL}auth/register`, credentials);
+      setUser(res.data);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
+  };
+
+  const login = async (credentials) => {
+    try {
+      const res = await axios.post(`${BASE_URL}auth/login`, credentials);
+      axios.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
+      localStorage.setItem("token", res.data.token);
+      setIsAuthenticated(true);
+      const user = await axios.get(`${BASE_URL}auth/current`);
+      setUser(user.data);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
+  };
+
+  const logout = async () => {
+    try {
+      await axios.post(`${BASE_URL}auth/logout`);
+      localStorage.removeItem("token");
+      setUser({});
+      setIsAuthenticated(false);
+      setExpenses([]);
+      setIncomes([]);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
+  };
+
+  const getUser = async () => {
+    try {
+      const user = await axios.get(`${BASE_URL}auth/current`);
+      setUser(user.data);
+    } catch (err) {
+      setError(err.message);
+      console.log(err);
+    }
+  };
 
   //////////// Incomes ////////////////
   const getIncomes = async () => {
@@ -112,6 +163,12 @@ export const GlobalProvider = ({ children }) => {
   return (
     <GlobalContext.Provider
       value={{
+        register,
+        login,
+        logout,
+        user,
+        getUser,
+        isAuthenticated,
         incomes,
         addIncome,
         getIncomes,
