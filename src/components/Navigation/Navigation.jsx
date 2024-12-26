@@ -1,17 +1,18 @@
-import PropTypes from "prop-types";
 import { NavStyled, UserContainer, UserAvatar, NavMenu, MenuItemIcon, StyledNavLink } from "./Navigation.styled";
 import { menuItems } from "../../utils/menuItems";
 import { FaSignOutAlt } from "react-icons/fa";
-
+import { useGlobalContext } from "../../context/useGlobalContext";
 import avatar from "../../img/avatar.png";
 
 export const Navigation = () => {
+  const { user, logout } = useGlobalContext();
+
   return (
     <NavStyled>
       <UserContainer>
         <UserAvatar src={avatar} alt="user´s avatar" />
         <div>
-          <h2>Username</h2>
+          <h2>{user.name}</h2>
           <p>Your Money</p>
         </div>
       </UserContainer>
@@ -30,14 +31,9 @@ export const Navigation = () => {
         })}
       </NavMenu>
 
-      <div>
+      <div onClick={logout} style={{ cursor: "pointer" }}>
         <FaSignOutAlt /> <span>Sign Out</span>
       </div>
     </NavStyled>
   );
-};
-
-Navigation.propTypes = {
-  active: PropTypes.number.isRequired,
-  setActive: PropTypes.func.isRequired,
 };
