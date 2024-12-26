@@ -1,9 +1,5 @@
 import { GoGraph } from "react-icons/go";
-import {
-  FaCreditCard,
-  FaMoneyBillTrendUp,
-  FaMoneyBillTransfer,
-} from "react-icons/fa6";
+import { FaCreditCard, FaMoneyBillTrendUp, FaMoneyBillTransfer } from "react-icons/fa6";
 
 export const menuItems = [
   {
@@ -16,7 +12,7 @@ export const menuItems = [
     id: 2,
     title: "View Transactions",
     icon: FaCreditCard,
-    link: "/transaction",
+    link: "/transactions",
   },
   {
     id: 3,
