@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { ExpensesStyled } from "./Expenses.styled";
 import { InnerLayout, TotalValueHeader, MainContentContainer } from "../../styles/index";
 import { Form, MovementsList } from "../../components/index";
-export const Expenses = ({ data, getData, addData, deleteData, totalValue }) => {
+export const Expenses = ({ data, getData, addData, totalValue }) => {
   useEffect(() => {
     try {
       getData();
@@ -22,8 +22,7 @@ export const Expenses = ({ data, getData, addData, deleteData, totalValue }) => 
         </TotalValueHeader>
         <MainContentContainer>
           <Form formType={"expenses"} formHandler={addData} />
-
-          <MovementsList data={data} deleteData={deleteData} />
+          <MovementsList data={data} clickable={false} />
         </MainContentContainer>
       </InnerLayout>
     </ExpensesStyled>

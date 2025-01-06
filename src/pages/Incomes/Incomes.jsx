@@ -4,7 +4,7 @@ import { IncomesStyled } from "./Incomes.styled";
 import { InnerLayout, TotalValueHeader, MainContentContainer } from "../../styles/index";
 import { Form, MovementsList } from "../../components/index";
 
-export const Income = ({ data, getData, addData, deleteData, totalValue }) => {
+export const Income = ({ data, getData, addData, totalValue }) => {
   useEffect(() => {
     try {
       getData();
@@ -23,7 +23,7 @@ export const Income = ({ data, getData, addData, deleteData, totalValue }) => {
         </TotalValueHeader>
         <MainContentContainer>
           <Form formType={"incomes"} formHandler={addData} />
-          <MovementsList data={data} deleteData={deleteData} />
+          <MovementsList data={data} clickable={false} />
         </MainContentContainer>
       </InnerLayout>
     </IncomesStyled>
