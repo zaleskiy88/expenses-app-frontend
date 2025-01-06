@@ -10,13 +10,7 @@ import {
 } from "./ListItem.styled";
 import { Button } from "../index";
 //Icons//
-import {
-  MdEuro,
-  MdHealthAndSafety,
-  MdSubscriptions,
-  MdRestaurant,
-  MdOutlineTravelExplore,
-} from "react-icons/md";
+import { MdEuro, MdHealthAndSafety, MdSubscriptions, MdRestaurant, MdOutlineTravelExplore } from "react-icons/md";
 import { BiShieldQuarter } from "react-icons/bi";
 import { FaMoneyBillTransfer, FaCartShopping } from "react-icons/fa6";
 import {
@@ -34,6 +28,9 @@ import {
 } from "react-icons/fa";
 import { GiClothes, GiAutoRepair } from "react-icons/gi";
 /////////
+
+//Need to find and import an icon for updateItem() !
+
 export const ListItem = ({
   id,
   title,
@@ -43,6 +40,8 @@ export const ListItem = ({
   description,
   $indicatorColor,
   deleteItem,
+  updateItem,
+  clickable,
 }) => {
   const formattedDate = moment(date).format("DD/M/YY");
 
@@ -85,8 +84,9 @@ export const ListItem = ({
         return <FaPiggyBank size={60} />;
     }
   };
+
   return (
-    <ListItemStyled>
+    <ListItemStyled $clickable={clickable}>
       <IconWrapper> {categoryIcon(category)}</IconWrapper>
       <ContentWrapper $indicatorColor={$indicatorColor}>
         <h5>{title}</h5>
@@ -116,6 +116,18 @@ export const ListItem = ({
               onClick={() => deleteItem(id)}
             />
           </BtnWrapper>
+          {updateItem && (
+            <BtnWrapper>
+              <Button
+                icon={<FaPiggyBank />}
+                color={"#ffff"}
+                bPad={"1rem"}
+                bRad={"50%"}
+                bg={"var(--primary-text-color)"}
+                onClick={() => updateItem(id)}
+              />
+            </BtnWrapper>
+          )}
         </InnerContentWrapper>
       </ContentWrapper>
     </ListItemStyled>
@@ -132,4 +144,6 @@ ListItem.propTypes = {
   description: PropTypes.string.isRequired,
   $indicatorColor: PropTypes.string.isRequired,
   deleteItem: PropTypes.func.isRequired,
+  updateItem: PropTypes.func,
+  clickable: PropTypes.bool.isRequired,
 };

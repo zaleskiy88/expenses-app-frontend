@@ -1,20 +1,16 @@
+import { useGlobalContext } from "../../context/useGlobalContext";
 import { List } from "./List.styled";
 import { ListItem } from "../index";
 import PropTypes from "prop-types";
-export const MovementsList = ({ data, deleteData }) => {
+
+export const MovementsList = ({ data, updateItem, clickable }) => {
+  const { deleteIncome, deleteExpense } = useGlobalContext();
+
   return (
     <List>
       {data
         ? data.map((item) => {
-            const {
-              _id: id,
-              title,
-              amount,
-              type,
-              date,
-              category,
-              description,
-            } = item;
+            const { _id: id, title, amount, type, date, category, description } = item;
 
             return (
               <ListItem
@@ -27,7 +23,9 @@ export const MovementsList = ({ data, deleteData }) => {
                 category={category}
                 description={description}
                 $indicatorColor={type}
-                deleteItem={deleteData}
+                deleteItem={type === "incomes" ? deleteIncome : deleteExpense}
+                updateItem={updateItem}
+                clickable={clickable}
               />
             );
           })
@@ -40,4 +38,5 @@ export const MovementsList = ({ data, deleteData }) => {
 MovementsList.propTypes = {
   data: PropTypes.array,
   deleteData: PropTypes.func,
+  updateItem: PropTypes.func,
 };

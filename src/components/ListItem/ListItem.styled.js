@@ -12,6 +12,9 @@ export const ListItemStyled = styled.li`
   gap: 1rem;
   width: 100%;
   color: var(--primary-text-color);
+  cursor: ${({ $clickable }) => {
+    return $clickable ? "pointer" : "default";
+  }};
 `;
 
 export const IconWrapper = styled.div`
@@ -43,9 +46,7 @@ export const ContentWrapper = styled.div`
       width: 0.8rem;
       height: 0.8rem;
       background-color: ${({ $indicatorColor }) =>
-        $indicatorColor === "incomes"
-          ? "var(--color-green)"
-          : "var(--color-delete)"};
+        $indicatorColor === "incomes" ? "var(--color-green)" : "var(--color-delete)"};
       border-radius: 50px;
     }
   }
