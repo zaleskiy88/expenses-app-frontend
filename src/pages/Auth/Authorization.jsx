@@ -48,10 +48,8 @@ export const AuthPages = () => {
     e.preventDefault();
 
     if (validateForm() && isLogin) {
-      console.log("Form submitted:", formData);
       login(formData);
     } else {
-      console.log("Form submitted:", formData);
       register(formData);
     }
   };
