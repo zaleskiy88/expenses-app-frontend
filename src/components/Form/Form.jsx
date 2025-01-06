@@ -46,7 +46,6 @@ export const Form = ({ formType, formHandler }) => {
     setFormState({
       title: "",
       amount: "",
-      type: formType,
       date: new Date(),
       category: "",
       description: "",
